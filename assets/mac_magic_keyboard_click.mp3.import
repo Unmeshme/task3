@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mac_magic_keyboard_click.mp3-f2b6883340032214b13f27d40dfe835a.mp3str"
+
+[deps]
+
+source_file="res://assets/mac_magic_keyboard_click.mp3"
+dest_files=[ "res://.import/mac_magic_keyboard_click.mp3-f2b6883340032214b13f27d40dfe835a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

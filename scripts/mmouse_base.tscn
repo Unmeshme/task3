@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/function_key.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.164706, 0.337255, 0.380392, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 6
+
+[node name="base_body" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 2
+
+[node name="base" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+rect_min_size = Vector2( 1200, 600 )
+mouse_filter = 2
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="row1" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1200.0
+margin_bottom = 80.0
+custom_constants/separation = 10
+
+[node name="esc" parent="VBoxContainer/row1" instance=ExtResource( 1 )]
+margin_right = 80.0
+margin_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 80, 80 )
+size_flags_stretch_ratio = 0.0
+key_name = "esc"
+top_left_corner_radius = 25
+top_right_corner_radius = 10
+bottom_left_corner_radius = 10
+bottom_right_corner_radius = 10
+key_width = 120
+key_height = 80
+
+[node name="f1" parent="VBoxContainer/row1" instance=ExtResource( 1 )]
+margin_left = 90.0
+margin_right = 170.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 60 )
+key_name = "F1"
+top_left_corner_radius = 10
+top_right_corner_radius = 10
+bottom_left_corner_radius = 10
+bottom_right_corner_radius = 10
+key_width = 80
+key_height = 80
+
+[node name="f2" parent="VBoxContainer/row1" instance=ExtResource( 1 )]
+margin_left = 180.0
+margin_right = 260.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 60 )
+key_name = "F2"
+top_left_corner_radius = 10
+top_right_corner_radius = 10
+bottom_left_corner_radius = 10
+bottom_right_corner_radius = 10
+key_width = 80
+key_height = 80
+
+[node name="row2" type="HFlowContainer" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 1200.0
+margin_bottom = 150.0
+
+[node name="esc" parent="VBoxContainer/row2" instance=ExtResource( 1 )]
+margin_bottom = 60.0
+key_name = "esc"
+top_left_corner_radius = 10
+top_right_corner_radius = 10
+bottom_left_corner_radius = 10
+bottom_right_corner_radius = 10
+key_width = 80
+key_height = 80
+
+[node name="f2" parent="VBoxContainer/row2" instance=ExtResource( 1 )]
+margin_left = 40.0
+margin_right = 84.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 80, 60 )
+key_name = "F2"
+top_left_corner_radius = 10
+top_right_corner_radius = 10
+bottom_left_corner_radius = 10
+bottom_right_corner_radius = 10
+key_width = 80
+key_height = 80
