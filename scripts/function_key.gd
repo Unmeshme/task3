@@ -5,7 +5,8 @@ export var texture_icon: Texture
 
 
 onready var icon: TextureRect = $Panel/icon
-#honestly we don't even do anything with it lol,..
+
+
 
 func _ready() -> void:
 	._ready()

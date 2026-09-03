@@ -3,31 +3,33 @@
 [ext_resource path="res://scripts/base_key.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Helvetica-Bold.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.466667, 0.603922, 0.780392, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.105882, 0.254902, 0.317647, 1 )
+corner_detail = 20
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 3
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
 font_data = ExtResource( 2 )
 
 [node name="base_key" type="Control"]
 focus_mode = 2
 mouse_filter = 1
 script = ExtResource( 1 )
-key_name = "a"
-top_left_corner_radius = 50
-top_right_corner_radius = 50
-bottom_left_corner_radius = 50
-bottom_right_corner_radius = 50
+__meta__ = {
+"_edit_use_anchors_": true
+}
+top_left_corner_radius = 10
+top_right_corner_radius = 10
+bottom_left_corner_radius = 10
+bottom_right_corner_radius = 10
+key_dimension = Vector2( 64, 64 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 1 )
+rect_min_size = Vector2( 64, 64 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Label" type="Label" parent="Panel"]
 anchor_right = 1.0
