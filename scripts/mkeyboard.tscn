@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/function_key.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/base.gd" type="Script" id=1]
+[ext_resource path="res://scripts/mkeyboard.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.164706, 0.337255, 0.380392, 1 )
+bg_color = Color( 0.745098, 0.85098, 0.803922, 1 )
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
@@ -16,99 +17,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 2
+script = ExtResource( 2 )
 
 [node name="base" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 8.0
+margin_right = -10.0
+margin_bottom = -5.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
 
-[node name="row1" type="HBoxContainer" parent="base"]
-margin_left = 15.0
-margin_top = 15.0
+[node name="parent" type="VBoxContainer" parent="base"]
+margin_left = 13.0
+margin_top = 13.0
 margin_right = 40.0
 margin_bottom = 40.0
+custom_constants/separation = 16
+
+[node name="row1" type="HBoxContainer" parent="base/parent"]
+margin_right = 27.0
 custom_constants/separation = 15
 
-[node name="esc" parent="base/row1" instance=ExtResource( 1 )]
-margin_bottom = 25.0
-key_name = "esc"
-top_left_corner_radius = 30
-key_dimension = Vector2( 100, 64 )
+[node name="row2" type="HBoxContainer" parent="base/parent"]
+margin_top = 16.0
+margin_right = 27.0
+margin_bottom = 16.0
+custom_constants/separation = 15
 
-[node name="f1" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 15.0
-margin_right = 15.0
-margin_bottom = 25.0
-key_name = "f1"
+[node name="row3" type="HBoxContainer" parent="base/parent"]
+margin_top = 32.0
+margin_right = 27.0
+margin_bottom = 32.0
+custom_constants/separation = 15
 
-[node name="f2" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 30.0
-margin_right = 30.0
-margin_bottom = 25.0
-key_name = "f2"
+[node name="row4" type="HBoxContainer" parent="base/parent"]
+margin_top = 48.0
+margin_right = 27.0
+margin_bottom = 48.0
+custom_constants/separation = 15
 
-[node name="f3" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 45.0
-margin_right = 45.0
-margin_bottom = 25.0
-key_name = "f3"
+[node name="row5" type="HBoxContainer" parent="base/parent"]
+margin_top = 64.0
+margin_right = 27.0
+margin_bottom = 64.0
+custom_constants/separation = 15
 
-[node name="f4" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 60.0
-margin_right = 60.0
-margin_bottom = 25.0
-key_name = "f4"
-
-[node name="f5" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 75.0
-margin_right = 75.0
-margin_bottom = 25.0
-key_name = "f5"
-
-[node name="f6" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 90.0
-margin_right = 90.0
-margin_bottom = 25.0
-key_name = "f6"
-
-[node name="f7" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 105.0
-margin_right = 105.0
-margin_bottom = 25.0
-key_name = "f7"
-
-[node name="f8" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 120.0
-margin_right = 120.0
-margin_bottom = 25.0
-key_name = "f8"
-
-[node name="f9" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 135.0
-margin_right = 135.0
-margin_bottom = 25.0
-key_name = "f9"
-
-[node name="f10" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 150.0
-margin_right = 150.0
-margin_bottom = 25.0
-key_name = "f10"
-
-[node name="f11" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 165.0
-margin_right = 165.0
-margin_bottom = 25.0
-key_name = "f11"
-
-[node name="f12" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 180.0
-margin_right = 180.0
-margin_bottom = 25.0
-key_name = "f12"
-
-[node name="lock" parent="base/row1" instance=ExtResource( 1 )]
-margin_left = 195.0
-margin_right = 195.0
-margin_bottom = 25.0
+[node name="row6" type="HBoxContainer" parent="base/parent"]
+margin_top = 80.0
+margin_right = 27.0
+margin_bottom = 80.0
+custom_constants/separation = 15

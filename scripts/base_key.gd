@@ -8,7 +8,7 @@ extends Control
 #false is default alpha numeric value
 
 export var key_name : String = ""
-
+export var label: String = ""
 export var top_left_corner_radius: 		int = 0
 export var top_right_corner_radius: 		int = 0
 export var bottom_left_corner_radius: 	int = 0
@@ -19,20 +19,20 @@ export var bottom_right_corner_radius: 	int = 0
 export var key_dimension: Vector2 = Vector2.ZERO
 
 onready var panel: Panel = $Panel
-onready var label: Label = $Panel/Label
+onready var label_text: Label = $Panel/Label
 
 
-var is_shifted: bool = false
+var is_caps_on: bool = false
 
 
 
 func _ready() -> void:
 	
-	rect_min_size = key_dimension
-	rect_size = key_dimension
+	#rect_min_size = key_dimension
+	#rect_size = key_dimension
 	panel.set_anchors_and_margins_preset(Control.PRESET_WIDE)
-	change_panel_vals()
-	label.text = key_name
+	#change_panel_vals()
+	#label_text.text = key_name
 
 
 
@@ -50,28 +50,45 @@ func change_panel_vals() -> void:
 	
 
 
-func _on_Panel_gui_input(event: InputEvent) ->void:
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			print(key_name)
+func _on_Panel_gui_input(p_event: InputEvent) ->void:
+	if p_event is InputEventMouseButton:
+		if p_event.button_index == BUTTON_LEFT and p_event.pressed:
+			if key_name == "":
+				return		
+			else:
+				if key_name == "caps_lock":
+					is_caps_on = !is_caps_on
+				print(key_name)
 
 
-#first return shifted as true whenever we get a key that can make it high
-#that is whenever shift is constantly being pressed or when
-#capslock has been pressed
-#check for scancode and unicode if they are same return it else return the unicode
-#rather its better to just do: everything as scan code except for non alphanumeric
-#keys well echo is firing too quickly
-#quick note to self the _input is being ran by every instance of base class which
-#results in the current excessive printing
-#study the fix and then fix it next time and then all that left is building the
-#keyboard
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.is_echo():
-		var character := char(event.unicode)
+func setup(p_data: Dictionary) -> void:
+	key_name = p_data.get("key_name", "")
+	label = p_data.get("label", "")
+	
+	# Assign text to UI node
+	if label_text:
+		label_text.text = label
+		
+	# Set Control node dimensions
+	var m_width = p_data.get("width", 64)
+	var m_height = p_data.get("height", 64)
+	rect_min_size = Vector2(m_width, m_height)
+	rect_size = Vector2(m_width, m_height)
+	
+	_apply_corners(p_data.get("corners", {}))
 
-		if character.length() == 1 and character.is_valid_identifier():
-			print(character)
-		else:
-			print(OS.get_scancode_string(event.physical_scancode))
 
+func _apply_corners(p_corners: Dictionary) -> void:
+	if not panel:
+		return
+		
+	# Duplicate StyleBoxFlat from Panel child node
+	var m_current_style: StyleBoxFlat = panel.get_stylebox("panel")
+	var m_style: StyleBoxFlat = m_current_style.duplicate()
+	
+	m_style.corner_radius_top_left = p_corners.get("top_left", 10)
+	m_style.corner_radius_top_right = p_corners.get("top_right", 10)
+	m_style.corner_radius_bottom_left = p_corners.get("bottom_left", 10)
+	m_style.corner_radius_bottom_right = p_corners.get("bottom_right", 10)
+
+	panel.add_stylebox_override("panel", m_style)
