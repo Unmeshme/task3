@@ -41,7 +41,7 @@ func change_panel_vals() -> void:
 	var m_current_style: StyleBoxFlat = panel.get_stylebox("panel")
 	var m_style: StyleBoxFlat = m_current_style.duplicate()
 	
-	m_style.corner_radius_top_right 	= top_right_corner_radius
+	m_style.corner_radius_top_right 		= top_right_corner_radius
 	m_style.corner_radius_top_left 		= top_left_corner_radius
 	m_style.corner_radius_bottom_right 	= bottom_right_corner_radius
 	m_style.corner_radius_bottom_left 	= bottom_left_corner_radius
@@ -65,15 +65,22 @@ func setup(p_data: Dictionary) -> void:
 	key_name = p_data.get("key_name", "")
 	label = p_data.get("label", "")
 	
-	# Assign text to UI node
 	if label_text:
 		label_text.text = label
-		
-	# Set Control node dimensions
-	var m_width = p_data.get("width", 64)
-	var m_height = p_data.get("height", 64)
-	rect_min_size = Vector2(m_width, m_height)
-	rect_size = Vector2(m_width, m_height)
+	
+	size_flags_horizontal = SIZE_FILL
+	size_flags_vertical = SIZE_SHRINK_CENTER
+	
+	var m_width = p_data.get("width", 67)
+	var m_height = p_data.get("height", 67)
+
+	if key_name == "up_arrow" || key_name == "down_arrow":
+		rect_min_size = Vector2(67,28)
+		rect_size = Vector2(67, 28)
+		panel.rect_min_size = Vector2(67,31)
+	else:
+		rect_min_size = Vector2(m_width, m_height)
+		rect_size = Vector2(m_width, m_height)
 	
 	if label_text.text == "delete" || label_text.text == "return" || key_name == "right_shift":
 		_style_bottom_right()
@@ -117,4 +124,11 @@ func _style_bottom_left() -> void:
 	label_text.valign = Label.VALIGN_BOTTOM
 	
 	label_text.margin_left = 5
+	label_text.margin_bottom = -5
+
+
+func _style_bottom_center() -> void:
+	label_text.align = Label.ALIGN_CENTER
+	label_text.valign = Label.VALIGN_BOTTOM
+	
 	label_text.margin_bottom = -5
