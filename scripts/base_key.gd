@@ -41,7 +41,7 @@ func change_panel_vals() -> void:
 	var m_current_style: StyleBoxFlat = panel.get_stylebox("panel")
 	var m_style: StyleBoxFlat = m_current_style.duplicate()
 	
-	m_style.corner_radius_top_right 		= top_right_corner_radius
+	m_style.corner_radius_top_right 	= top_right_corner_radius
 	m_style.corner_radius_top_left 		= top_left_corner_radius
 	m_style.corner_radius_bottom_right 	= bottom_right_corner_radius
 	m_style.corner_radius_bottom_left 	= bottom_left_corner_radius
@@ -75,7 +75,17 @@ func setup(p_data: Dictionary) -> void:
 	rect_min_size = Vector2(m_width, m_height)
 	rect_size = Vector2(m_width, m_height)
 	
+	if label_text.text == "delete" || label_text.text == "return" || key_name == "right_shift":
+		_style_bottom_right()
+		
+	if label_text.text == "caps lock" || label_text.text == "tab" ||\
+	   key_name == "left_shift" || label_text.text == "esc":
+		_style_bottom_left()
+	
+	
 	_apply_corners(p_data.get("corners", {}))
+	
+
 
 
 func _apply_corners(p_corners: Dictionary) -> void:
@@ -92,3 +102,19 @@ func _apply_corners(p_corners: Dictionary) -> void:
 	m_style.corner_radius_bottom_right = p_corners.get("bottom_right", 10)
 
 	panel.add_stylebox_override("panel", m_style)
+
+
+func _style_bottom_right() -> void:
+	label_text.align = Label.ALIGN_RIGHT
+	label_text.valign = Label.VALIGN_BOTTOM
+	
+	label_text.margin_right = -5
+	label_text.margin_bottom = -5
+
+
+func _style_bottom_left() -> void:
+	label_text.align = Label.ALIGN_LEFT
+	label_text.valign = Label.VALIGN_BOTTOM
+	
+	label_text.margin_left = 5
+	label_text.margin_bottom = -5

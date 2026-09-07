@@ -40,6 +40,7 @@ func load_json(p_path: String) -> Array:
 		return []
 
 func build_keyboard(p_layout_data: Array) -> void:
+	
 	# Step 1: Clean all existing row children first
 	for m_row in rows:
 		for m_child in m_row.get_children():
@@ -56,9 +57,13 @@ func build_keyboard(p_layout_data: Array) -> void:
 		# If row exists, spawn and append
 		if m_row_idx >= 0 and m_row_idx < rows.size():
 			if SCENES.has(m_type_id):
+				if m_key_data.get("label", "") == "down_arrow":
+					#create a v_box instance
+					var m_v_box: VBoxContainer = VBoxContainer.new()
+					rows[m_row_idx].add_child(m_v_box)
 				var m_key_instance = SCENES[m_type_id].instance()
 				rows[m_row_idx].add_child(m_key_instance)
-				
+				#here I need to check the m_key_data and do the stuff:
 				if m_key_instance.has_method("setup"):
 					m_key_instance.setup(m_key_data)
 
