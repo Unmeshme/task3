@@ -3,20 +3,7 @@ class_name BaseKey
 
 extends Control
 
-
-#member variables
-#false is default alpha numeric value
-
-export var key_name : String = ""
-export var label: String = ""
-export var top_left_corner_radius: 		int = 0
-export var top_right_corner_radius: 		int = 0
-export var bottom_left_corner_radius: 	int = 0
-export var bottom_right_corner_radius: 	int = 0
-
-
-#also need dimension
-export var key_dimension: Vector2 = Vector2.ZERO
+var keys_id: int = 0
 
 onready var panel: Panel = $Panel
 onready var label_text: Label = $Panel/Label
@@ -24,12 +11,7 @@ onready var label_text: Label = $Panel/Label
 
 
 func _ready() -> void:
-	
-	#rect_min_size = key_dimension
-	#rect_size = key_dimension
 	panel.set_anchors_and_margins_preset(Control.PRESET_WIDE)
-	#change_panel_vals()
-	#label_text.text = key_name
 
 
 
@@ -40,58 +22,39 @@ func change_panel_vals() -> void:
 func _on_Panel_gui_input(p_event: InputEvent) ->void:
 	if p_event is InputEventMouseButton:
 		if p_event.button_index == BUTTON_LEFT and p_event.pressed:
-			if key_name == "":
-				return		
-			else:
-				print(key_name)
+			var m_key_event: InputEvent = InputEventKey.new()
+			m_key_event.physical_scancode = keys_id
+			m_key_event.pressed = true
+			Input.parse_input_event(m_key_event)
 
 
 func setup(p_data: Dictionary) -> void:
-	key_name = p_data.get("key_name", "")
-	label = p_data.get("label", "")
-	
-	if label_text:
-		label_text.text = label
-	
-	size_flags_horizontal = SIZE_FILL
-	size_flags_vertical = SIZE_SHRINK_CENTER
-	
-	var m_width = p_data.get("width", 67)
-	var m_height = p_data.get("height", 67)
-
-	if key_name == "up_arrow" || key_name == "down_arrow":
-		rect_min_size = Vector2(67,28)
-		rect_size = Vector2(67, 28)
-		panel.rect_min_size = Vector2(67,31)
-	else:
-		rect_min_size = Vector2(m_width, m_height)
-		rect_size = Vector2(m_width, m_height)
-	
-	if label_text.text == "delete" || label_text.text == "return" || key_name == "right_shift":
-		_style_bottom_right()
+	var m_key_name: String = p_data.get("key_name", "")
+	keys_id = p_data.get("key_id", 0)
 		
-	if label_text.text == "caps lock" || label_text.text == "tab" ||\
-	   key_name == "left_shift" || label_text.text == "esc":
-		_style_bottom_left()
+	if label_text:
+		if keys_id == KEY_SPACE:
+			label_text.text = ""
+		else:
+			label_text.text = m_key_name
 	
-	
-	_apply_corners(p_data.get("corners", {}))
+	rect_min_size = p_data.get("size", {})
+	panel.rect_min_size = rect_min_size
+	_apply_corners(p_data.get("border_style", {}))
 
 
 
-
-func _apply_corners(p_corners: Dictionary) -> void:
+func _apply_corners(p_style: StyleBox) -> void:
 	if not panel:
 		return
-		
-	# Duplicate StyleBoxFlat from Panel child node
+
 	var m_current_style: StyleBoxFlat = panel.get_stylebox("panel")
 	var m_style: StyleBoxFlat = m_current_style.duplicate()
 	
-	m_style.corner_radius_top_left = p_corners.get("top_left", 10)
-	m_style.corner_radius_top_right = p_corners.get("top_right", 10)
-	m_style.corner_radius_bottom_left = p_corners.get("bottom_left", 10)
-	m_style.corner_radius_bottom_right = p_corners.get("bottom_right", 10)
+	m_style.corner_radius_top_left = p_style.corner_radius_top_left
+	m_style.corner_radius_top_right = p_style.corner_radius_top_right
+	m_style.corner_radius_bottom_left = p_style.corner_radius_bottom_left
+	m_style.corner_radius_bottom_right = p_style.corner_radius_bottom_right
 
 	panel.add_stylebox_override("panel", m_style)
 

@@ -233,7 +233,7 @@ var Key_info_t: Dictionary = {
 	"minus": {
 		"size": default_key_size,
 		"border_style": border_radius_default,
-		"key_name": "4",
+		"key_name": "-",
 		"id": 2,
 		"key_id": KEY_MINUS,
 		"shift_label": "_",
@@ -351,13 +351,13 @@ var Key_info_t: Dictionary = {
 		"border_style": border_radius_default,
 		"key_name": "\\",
 		"id": 2,
-		"key_id": KEY_FORWARD, #forward slash
+		"key_id": KEY_SLASH, #forward slash
 		"shift_label": "|",
 	},
 	"caps_lock":{
 		"size": caps_lock_key_size,
 		"border_style": border_radius_default,
-		"key_name": "p",
+		"key_name": "caps lock",
 		"id": 1,
 		"key_id": KEY_P,
 	},
@@ -373,7 +373,7 @@ var Key_info_t: Dictionary = {
 		"border_style": border_radius_default,
 		"key_name": "s",
 		"id": 1,
-		"key_id": KEY_B,
+		"key_id": KEY_S,
 	},
 	"D":{
 		"size": default_key_size,
@@ -530,10 +530,9 @@ var Key_info_t: Dictionary = {
 	"r_shift": {
 		"size": shift_key_size,
 		"border_style": border_radius_default,
-		"key_name": "'",
-		"id": 2,
+		"key_name": "shift",
+		"id": 1,
 		"key_id": KEY_SHIFT,
-		"shift_label": '"',
 	},
 	"fn": {
 		"size": default_key_size,

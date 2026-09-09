@@ -5,7 +5,6 @@
 [ext_resource path="res://resource/default_border_radius.tres" type="StyleBox" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 10
 extra_spacing_bottom = 7
 font_data = ExtResource( 2 )
 
@@ -16,11 +15,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-top_left_corner_radius = 10
-top_right_corner_radius = 10
-bottom_left_corner_radius = 10
-bottom_right_corner_radius = 10
-key_dimension = Vector2( 67, 67 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0

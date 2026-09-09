@@ -28,10 +28,7 @@ func setup(p_info: Dictionary) -> void:
 func _on_Panel_gui_input(p_event: InputEvent) ->void:
 	if p_event is InputEventMouseButton:
 		if p_event.button_index == BUTTON_LEFT and p_event.pressed:
-			if key_name == "":
+			if label_text.text == "":
 				return
-			elif is_caps_on:
-				#need to toggle it lol
-				print(shift_label)
 			else:
 				print(label_text.text)
