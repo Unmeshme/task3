@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/function_key.gd" type="Script" id=1]
+[ext_resource path="res://src/Label.gd" type="Script" id=2]
+[ext_resource path="res://assets/icons/command.png" type="Texture" id=3]
+[ext_resource path="res://src/base_key.tscn" type="PackedScene" id=4]
+
+[node name="function_key" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+texture_icon = null
+
+[node name="icon" type="TextureRect" parent="Panel" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 19.0
+margin_top = 2.0
+margin_right = 455.0
+margin_bottom = 478.0
+rect_min_size = Vector2( 64, 64 )
+rect_scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label" parent="Panel" index="1"]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 2.0
+margin_bottom = 2.0
+valign = 2
+script = ExtResource( 2 )

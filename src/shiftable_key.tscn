@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/shiftable_key.gd" type="Script" id=1]
-[ext_resource path="res://scripts/base_key.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/shiftable_key.gd" type="Script" id=1]
+[ext_resource path="res://src/base_key.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -23,4 +23,5 @@ margin_top = 7.0
 margin_bottom = -23.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
+text = "shift"
 align = 1

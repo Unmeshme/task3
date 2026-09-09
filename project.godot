@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "BaseKey",
 "language": "GDScript",
-"path": "res://scripts/base_key.gd"
+"path": "res://src/base_key.gd"
 } ]
 _global_script_class_icons={
 "BaseKey": ""
@@ -21,12 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="task3"
-run/main_scene="res://scripts/mkeyboard.tscn"
+run/main_scene="res://src/mkeyboard.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
+Globals="*res://src/globals.gd"
 
 [display]
 
