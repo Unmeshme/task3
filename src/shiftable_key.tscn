@@ -12,8 +12,8 @@ script = ExtResource( 1 )
 shift_label = ""
 
 [node name="Label" parent="Panel" index="0"]
-margin_top = 19.0
-margin_bottom = -10.0
+margin_top = 25.0
+margin_bottom = -4.0
 valign = 2
 
 [node name="shift_label" type="Label" parent="Panel" index="1"]

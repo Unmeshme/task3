@@ -4,11 +4,17 @@ const SCENES = {
 	1: preload("res://src/base_key.tscn"),
 	3: preload("res://src/function_key.tscn"),
 	2: preload("res://src/shiftable_key.tscn"),
-	4: preload("res://src/utility_key.tscn"),
+	4: preload("res://src/utility_key_style_top_right.tscn"),
+	5: preload("res://src/style_left_bottom.tscn"),
+	6: preload("res://src/style_right_bottom.tscn"),
+	7: preload("res://src/style_icon_top_left.tscn"),
+	8: preload("res://src/command_left.tscn"),
+	9: preload("res://src/command_right.tscn"),
+	10: preload("res://src/fn_key.tscn"),
+	11: preload("res://src/lock.tscn"),
 }
 
 #const LAYOUT_PATH = "res://assets/test.json"
-
 onready var rows = [
 	$parent/row1,
 	$parent/row2,
@@ -21,7 +27,7 @@ onready var rows = [
 
 const LAYOUT_QWERTY = [
 	["esc", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12", "lock"],
-	["tilde", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "plus", "delete"],
+	["tilde", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "equal", "delete"],
 	["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "bracket_left", "bracket_right", "forward_slash"],
 	["caps_lock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "semi-colon", "apostrophe", "return"],
 	["l_shift", "Z", "X", "C", "V", "B", "N", "M", "comma", "full_stop", "backslash", "r_shift"],
@@ -32,6 +38,8 @@ const LAYOUT_QWERTY = [
 func _ready() -> void:
 	test_build_keyboard()
 
+
+#var fast_key_access: Dictionary = {}
 
 #might have to keep track of which row we should be building in
 func test_build_keyboard() -> void:
@@ -55,10 +63,13 @@ func test_build_keyboard() -> void:
 			
 			var m_data: Dictionary = Globals.Key_info_t[m_key_name]
 			var m_type_id: int = m_data.get("id", 1)
-			
+#			var m_key_id: int = m_data.get("key_id", 0)
 			if SCENES.has(m_type_id):
 				var m_instance = SCENES[m_type_id].instance()
 				m_target_row.add_child(m_instance)
+				
+#				if m_key_id != 0:
+#					fast_key_access[m_key_id] = m_instance
 				
 				if m_instance.has_method("setup"):
 					m_instance.setup(m_data)
@@ -75,9 +86,16 @@ func _spawn_arrow_block(p_target_row: HBoxContainer) -> void:
 		if Globals.Key_info_t.has(m_arrow_key):
 			var m_data: Dictionary = Globals.Key_info_t[m_arrow_key]
 			var m_type_id: int = m_data.get("id", 1)
+#			var m_key_id: int = m_data.get("key_id", 1)
+			
 			if SCENES.has(m_type_id):
 				var m_instance = SCENES[m_type_id].instance()
 				m_v_box.add_child(m_instance)
+				
+#				if m_key_id != 0:
+#					fast_key_access[m_key_id] = m_instance
 				if m_instance.has_method("setup"):
 					m_instance.setup(m_data)
 
+#func get_key(p_scancode: int) -> Control:
+#	return fast_key_access.get(p_scancode, null)

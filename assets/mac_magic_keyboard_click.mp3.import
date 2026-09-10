@@ -11,5 +11,5 @@ dest_files=[ "res://.import/mac_magic_keyboard_click.mp3-f2b6883340032214b13f27d
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
